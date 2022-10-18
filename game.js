@@ -4,6 +4,7 @@ const btnUp = document.querySelector('#up')
 const btnLeft = document.querySelector('#left')
 const btnRight = document.querySelector('#right')
 const btnDown = document.querySelector('#down')
+const spanLives = document.querySelector('#lives')
 
 let canvasSize;
 let elementSize;
@@ -66,6 +67,8 @@ function setCanvasSize() {
         const mapRows = map.trim().split('\n')
         const mapRowCols = mapRows.map(row => row.trim().split(''))
         console.log(map)
+
+        showLives()
 
         enemyPostions = [];
         game.clearRect(0, 0, canvasSize, canvasSize)
@@ -134,6 +137,16 @@ function setCanvasSize() {
 
     function gameWin() {
         console.log('Terminaste!!!');
+    }
+
+    function showLives() {
+
+        const heartsArray = Array(lives).fill(emojis['HEART'])
+        //console.log(heartsArray)
+        spanLives.innerHTML = ""
+        heartsArray.forEach(hearth => spanLives.append(hearth))
+
+
     }
 
 
