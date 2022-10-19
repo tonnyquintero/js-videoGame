@@ -6,6 +6,9 @@ const btnRight = document.querySelector('#right')
 const btnDown = document.querySelector('#down')
 const spanLives = document.querySelector('#lives')
 const spanTime = document.querySelector('#time')
+const spanRecord = document.querySelector('#record')
+const pResult = document.querySelector('#result')
+
 
 let canvasSize;
 let elementSize;
@@ -71,7 +74,8 @@ function setCanvasSize() {
 
         if (!timeStart) {
             timeStart = Date.now();
-            timeInterval = setInterval(showTime ,100)
+            timeInterval = setInterval(showTimer ,100)
+            showRecord()
         }
 
         const mapRows = map.trim().split('\n')
@@ -149,6 +153,22 @@ function setCanvasSize() {
     function gameWin() {
         console.log('Terminaste!!!');
         clearInterval(timeInterval);
+
+        const recordTime = localStorage.getItem('record_time')
+        const playerTime = Date.now() - timeStart;
+
+        if (recordTime) {
+            if (recordTime >= playerTime) {
+                localStorage.setItem('record_time', playerTime)
+                pResult.innerHTML = 'SUPERASTE EL RECORD!!!';
+            } else {
+                pResult.innerHTML = 'No superaste el record =(';
+            }
+        } else  {
+            localStorage.setItem('record_time', playerTime)
+            pResult.innerHTML = 'Trata de imponer un record';
+        } 
+        console.log({recordTime, playerTime});
     }
 
     function showLives() {
@@ -161,8 +181,22 @@ function setCanvasSize() {
 
     }
 
-    function showTime() {
-        spanTime.innerHTML = Date.now() - timeStart;
+    // function showTime() {
+    //     spanTime.innerHTML = Date.now() - timeStart;
+    // }
+
+
+
+    function showTimer(){
+    
+        spanTime.innerText = ((Date.now()-timeStart)/1000);
+    
+    }
+
+    function showRecord(){
+    
+        spanRecord.innerText = localStorage.getItem('record_time');
+    
     }
 
 
