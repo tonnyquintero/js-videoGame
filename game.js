@@ -166,7 +166,7 @@ function setCanvasSize() {
             }
         } else  {
             localStorage.setItem('record_time', playerTime)
-            pResult.innerHTML = 'Trata de imponer un record';
+            pResult.innerHTML = 'Intenta imponer un record';
         } 
         console.log({recordTime, playerTime});
     }
