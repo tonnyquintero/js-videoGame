@@ -10,6 +10,15 @@ const spanRecord = document.querySelector('#record')
 const pResult = document.querySelector('#result')
 
 
+const reset_button = document.querySelector('#reset_button');
+
+reset_button.addEventListener('click', resetGame);
+
+function resetGame() {
+    location.reload();
+}
+
+
 let canvasSize;
 let elementSize;
 let level = 0;
@@ -38,9 +47,9 @@ window.addEventListener('resize', setCanvasSize)
 function setCanvasSize() {
     
     if (window.innerHeight > window.innerWidth) {
-        canvasSize = window.innerWidth * 0.7;
+        canvasSize = window.innerWidth * 0.8;
     } else {
-        canvasSize = window.innerHeight * 0.7;
+        canvasSize = window.innerHeight * 0.8;
     }
     
     canvasSize = Number(canvasSize.toFixed(0))
